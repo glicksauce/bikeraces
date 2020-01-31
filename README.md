@@ -8,27 +8,27 @@ A bike race finder that uses an API to find bike races in your area
 
 The layout:
 Standard screen
-    Background 
-        - cyclist looking down at his handlebards. At the center is the garmin computer which will display results from the search
+Background 
+- cyclist looking down at his handlebards. At the center is the garmin computer which will display results from the search
 
-    Elements: 
-        - Title 
+Elements: 
+- Title 
 
-    Input: 
-        - Enter Zip Code box 
+Input: 
+- Enter Zip Code box 
         
-    Buttons:
-        - Input drop down to select type of bike race (road, cyclocross, MTB, grand-fondo)
-        - Go! (kicks off the search)
+Buttons:
+- Input drop down to select type of bike race (road, cyclocross, MTB, grand-fondo)
+- Go! (kicks off the search)
 
-    Divs: 
-        - Search results, displayed in the 'bike computer' section of the background
+Divs: 
+- Search results, displayed in the 'bike computer' section of the background
     
-    Complex user interface:
-        - search results will be displayed 'carousel style' on the bike computer background (ordered by race date) and can be scrolled through left and right
+Complex user interface:
+- search results will be displayed 'carousel style' on the bike computer background (ordered by race date) and can be scrolled through left and right
 
-    The look
-        - going for a minimilist look. It will be centered on the page with thick margins.  Elements will be stacked vertically. Mobile site will look very similiar since this is a vertically oriented page
+The look
+- going for a minimilist look. It will be centered on the page with thick margins.  Elements will be stacked vertically. Mobile site will look very similiar since this is a vertically oriented page
 
 Under the hood:
     The search will be powered by an API from the website bike-reg.com: https://www.bikereg.com/api/EventSearchDoc.aspx. DOM manipulation will be done by jquery
@@ -39,15 +39,16 @@ MVP Deliverables
 - User can scroll left and right through the results
 
 Stretch goals:
+- add another input where user can limit distance to search (in miles)
 - implment 'find my current location' button to automatically populate users's zip code
 - user can save races which will get stored in localstorage
 - Create a calendar of saved races.
 - change search results to a list and instead make the carousel of the users saved calendar events
 
 Progress:
-('-' in front of item indicates completed)
+( '-' in front of item indicates completed)
 - complete proof of concept
--create wireframe
+ create wireframe
  create html,css, and javascript boiler plate
  verify site is accessable from github pages
  basic layout
