@@ -56,6 +56,7 @@ Complex user interface:
    - input, buttons, divs
  - basic css
  implement api. needs to take in zip and type of race and return results
+    - (discovered api needs location in terms of latitude and lognitude, need to find a way to convert zip code into long, lat units will come back to this)
  format result to appear in DOM
  create carousel
  revamp laouyout. format for multiple screen sizes
