@@ -1,4 +1,5 @@
 let resultsArray = [];
+let currentResult = 0;
 
 $(()=>{
 console.log("up and running")
@@ -7,22 +8,44 @@ console.log("up and running")
 
 //displays a race result in the DOM
 const displayResult = (resultNumber) =>{
-    $eventTitle = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventName"])
+    //clears out the results
+    $('.resultsText').remove()
+
+    $eventTitle = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventName"]).addClass("resultsText")
 
     
-    $eventAddress = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"])
+    $eventAddress = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"]).addClass("resultsText")
     
     
     $eventCityState = $('<div>').text(
-        resultsArray[0]["MatchingEvents"][resultNumber]["EventCity"] + " " + resultsArray[0]["MatchingEvents"][resultNumber]["EventState"])
+        resultsArray[0]["MatchingEvents"][resultNumber]["EventCity"] + " " + resultsArray[0]["MatchingEvents"][resultNumber]["EventState"]).addClass("resultsText")
 
-    $eventDistance = $('<div>').text(Math.floor(resultsArray[0]["MatchingEvents"][resultNumber]["Distance"]) + " miles away")
+    $eventDistance = $('<div>').text(Math.floor(resultsArray[0]["MatchingEvents"][resultNumber]["Distance"]) + " miles away").addClass("resultsText")
     
     $('.search-results').append($eventTitle).append($eventAddress).append($eventCityState).append($eventDistance)
 }
 
 const makeNavButtons = () =>{
-    
+    $leftButton = $('<button>').text("previous race").attr("id","scroll-left")
+    $rightButton = $('<button>').text("next race").attr("id","scroll-right")
+
+    //if not at the last result than to to the next result
+    $rightButton.on("click",function () {
+        if (currentResult < resultsArray[0]["MatchingEvents"].length - 1){
+            currentResult +=1;
+            displayResult(currentResult);
+        }
+    })
+        
+     //if not at the first result than go to previous result
+     $leftButton.on("click",function () {
+        if (currentResult > 0){
+            currentResult -= 1;
+            displayResult(currentResult);
+        }   
+    })
+
+    $('.background').append($leftButton).append($rightButton);
 }
 
     $('form').on('submit',(event)=>{
@@ -41,7 +64,7 @@ const makeNavButtons = () =>{
                     //console.log(JSON.stringify(new Date()))
                     console.log(data)
                     resultsArray.push(data)  
-                    displayResult(0);    
+                    displayResult(currentResult);    
                     makeNavButtons();             
                 },
             ()=>{
