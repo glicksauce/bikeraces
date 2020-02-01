@@ -49,11 +49,11 @@ Progress:
 ( '-' in front of item indicates completed)
 - complete proof of concept
 -  create wireframe
- create html,css, and javascript boiler plate
- verify site is accessable from github pages
+- create html,css, and javascript boiler plate
+- verify site is accessable from github pages
  basic layout
    background
-   input, buttons, divs
+   - input, buttons, divs
  basic css
  implement api. needs to take in zip and type of race and return results
  format result to appear in DOM
