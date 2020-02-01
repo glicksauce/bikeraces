@@ -9,15 +9,28 @@
 }
 
 h1{
+    font-family: 'Sigmar One', cursive;
     display: block;
     text-align: center;
     width: 100%;
 }
 
-.inputbox{
-    display: flex;
+.descriptor{
+    font-size: 10px;
+    color: #87817E;
+}
+input{
+   margin: 2px 0 15px 0;
+   width: 70px;
+   height: 20px;
+   text-align: right;
+   font-family: 'Poppins', sans-serif;
 }
 
+input:focus {
+    background-color: #F1E2DA;
+
+}
 form{
   
 }
@@ -25,18 +38,38 @@ form{
     
 }
 
-
+select{
+    height: 30px;
+    margin: 2px 0 15px 0;
+    border-radius: 5%;
+    font-family: 'Poppins', sans-serif;
+}
 
 #go{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin: 10px 0;
+    background: radial-gradient(#3DDD9B , #688E7F); 
+    color: #111245;
+    font-size: 30px;
+    border: 2px solid #D9C0B5;
+    font-family: 'Poppins', sans-serif;
+}
+
+#go:hover{
+    background: radial-gradient(#E1541C, #4F3429);
+    color: #932707;
+    font-size: 32px;
 }
 
 
 .background{
     width: 100%;
-    height: 1000px;
-    background: url("images/bars.png");
+    height: 600px;
+    background: url("images/bars.png") center;
     background-repeat: no-repeat;
-    background-size: 300px;
+    background-size:450px;
 }
 
 .footer {
@@ -44,9 +77,9 @@ form{
 }
 
 .search-results{
-    width: 95px;
-    height: 135px;
+    width: 135px;
+    height: 180px;
     position: relative;
-    top: 25px;
-    left: 100px
+    top: 55px;
+    left: 310px;
 }

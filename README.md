@@ -54,11 +54,12 @@ Complex user interface:
  basic layout
    - background
    - input, buttons, divs
- basic css
+ - basic css
  implement api. needs to take in zip and type of race and return results
  format result to appear in DOM
  create carousel
  revamp laouyout. format for multiple screen sizes
+ add data validation for zip code entry
  improve CSS, make it look more professional
  start stretch goals
 
