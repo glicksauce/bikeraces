@@ -48,7 +48,7 @@ Stretch goals:
 Progress:
 ( '-' in front of item indicates completed)
 - complete proof of concept
- create wireframe
+-  create wireframe
  create html,css, and javascript boiler plate
  verify site is accessable from github pages
  basic layout
