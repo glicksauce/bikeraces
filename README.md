@@ -52,7 +52,7 @@ Complex user interface:
 - create html,css, and javascript boiler plate
 - verify site is accessable from github pages
  basic layout
-   background
+   - background
    - input, buttons, divs
  basic css
  implement api. needs to take in zip and type of race and return results
