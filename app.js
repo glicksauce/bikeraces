@@ -22,7 +22,17 @@ const displayResult = (resultNumber) =>{
 
     $eventDistance = $('<div>').text(Math.floor(resultsArray[0]["MatchingEvents"][resultNumber]["Distance"]) + " miles away").addClass("resultsText")
     
-    $('.search-results').append($eventTitle).append($eventAddress).append($eventCityState).append($eventDistance)
+    //converts Microsoft JSON Date format to a readable date
+    let date = new Date(parseInt(resultsArray[0]["MatchingEvents"][resultNumber]["EventDate"].substr(6)));
+    let date2 = date.toDateString()
+    let date3 = date.toTimeString();
+
+    console.log(date2)
+    console.log(date3)
+
+    $eventDate = $('<div>').text(date2).addClass("resultsText")
+
+    $('.search-results').append($eventTitle).append($eventAddress).append($eventCityState).append($eventDistance).append($eventDate)
 }
 
 const makeNavButtons = () =>{
