@@ -1,5 +1,7 @@
 let resultsArray = [];
 let currentResult = 0;
+let scrollIncrement = 100;
+
 
 $(()=>{
 console.log("up and running")
@@ -56,21 +58,43 @@ const makeNavButtons = () =>{
     //if not at the last result than to to the next result
     $rightButton.on("click",function () {
         if (currentResult < resultsArray[0]["MatchingEvents"].length - 1){
-            currentResult +=1;
-            displayResult(currentResult);
+            let currentScrollPosition = $('.search-results').scrollLeft()
+            $('.search-results').scrollLeft(currentScrollPosition + scrollIncrement);
+
         }
     })
         
      //if not at the first result than go to previous result
      $leftButton.on("click",function () {
         if (currentResult > 0){
-            currentResult -= 1;
-            displayResult(currentResult);
+            let currentScrollPosition = $('.search-results').scrollLeft()
+            $('.search-results').scrollLeft(currentScrollPosition - scrollIncrement);
         }   
     })
 
     $('.background').append($leftButton).append($rightButton);
 }
+
+/* not using at this time
+//mouse wheel listeners
+const mouseWheelListeners = () => {
+    $('.search-results').on('mousewheel DOMMouseScroll', function(e){
+        if(typeof e.originalEvent.detail == 'number' && e.originalEvent.detail !== 0) {
+          if(e.originalEvent.detail > 0) {
+            console.log('Down');
+          } else if(e.originalEvent.detail < 0){
+              console.log('Up');
+          }
+        } else if (typeof e.originalEvent.wheelDelta == 'number') {
+          if(e.originalEvent.wheelDelta < 0) {
+              console.log('Down');
+          } else if(e.originalEvent.wheelDelta > 0) {
+              console.log('Up');
+          }
+        }
+      });
+}
+*/
 
     $('form').on('submit',(event)=>{
         event.preventDefault();
@@ -92,7 +116,7 @@ const makeNavButtons = () =>{
                         displayResult(currentResult);    
                         currentResult +=1;
                     }
-                    makeNavButtons();             
+                    makeNavButtons();         
                 },
             ()=>{
                 console.log('bad request')
