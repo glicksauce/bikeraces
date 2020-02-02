@@ -83,7 +83,13 @@ select{
     top: 55px;
     left: 310px;
     overflow: auto;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; 
 }
+
+
 
 .resultsText{
     width: 100%;
@@ -91,4 +97,7 @@ select{
     border-bottom: solid 2px;
     border-image: linear-gradient(to left, transparent 0%, #6d8079 50%, transparent 100%);
     border-image-slice: 1;
+    flex-shrink: 0;
+    scroll-snap-align: start;
 }
+

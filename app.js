@@ -8,31 +8,45 @@ console.log("up and running")
 
 //displays a race result in the DOM
 const displayResult = (resultNumber) =>{
-    //clears out the results
-    $('.resultsText').remove()
 
-    $eventTitle = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventName"]).addClass("resultsText")
+        //clears out the results
+        //$('.resultsText').remove()
 
-    
-    $eventAddress = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"]).addClass("resultsText")
-    
-    
-    $eventCityState = $('<div>').text(
-        resultsArray[0]["MatchingEvents"][resultNumber]["EventCity"] + " " + resultsArray[0]["MatchingEvents"][resultNumber]["EventState"]).addClass("resultsText")
+        $eventTitle = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventName"]).addClass("resultsText")
 
-    $eventDistance = $('<div>').text(Math.floor(resultsArray[0]["MatchingEvents"][resultNumber]["Distance"]) + " miles away").addClass("resultsText")
-    
-    //converts Microsoft JSON Date format to a readable date
-    let date = new Date(parseInt(resultsArray[0]["MatchingEvents"][resultNumber]["EventDate"].substr(6)));
-    let date2 = date.toDateString()
-    let date3 = date.toTimeString();
+        
+        $eventAddress = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"]).addClass("resultsText")
+        
+        
+        $eventCityState = $('<div>').text(
+            resultsArray[0]["MatchingEvents"][resultNumber]["EventCity"] + " " + resultsArray[0]["MatchingEvents"][resultNumber]["EventState"]).addClass("resultsText")
 
-    console.log(date2)
-    console.log(date3)
+        $eventDistance = $('<div>').text(Math.floor(resultsArray[0]["MatchingEvents"][resultNumber]["Distance"]) + " miles away").addClass("resultsText")
+        
+        //converts Microsoft JSON Date format to a readable date
+        let date = new Date(parseInt(resultsArray[0]["MatchingEvents"][resultNumber]["EventDate"].substr(6)));
+        let date2 = date.toDateString()
+        let date3 = date.toTimeString();
 
-    $eventDate = $('<div>').text(date2).addClass("resultsText")
+        console.log(date2)
+        console.log(date3)
 
-    $('.search-results').append($eventTitle).append($eventAddress).append($eventCityState).append($eventDistance).append($eventDate)
+        $eventDate = $('<div>').text(date2).addClass("resultsText")
+
+        //making new div appending all results to this one div then appending it to search results
+        $resultDiv = $('<div>').attr("id",currentResult).addClass("resultsText")
+        $resultDiv
+            .append($eventTitle)
+            .append($eventAddress)
+            .append($eventCityState)
+            .append($eventDistance)
+            .append($eventDate)
+
+        $('.search-results').append($resultDiv)
+
+        //testing slider section
+        //$('.slider').append($resultDiv.attr("id",currentResult))
+
 }
 
 const makeNavButtons = () =>{
@@ -74,7 +88,10 @@ const makeNavButtons = () =>{
                     //console.log(JSON.stringify(new Date()))
                     console.log(data)
                     resultsArray.push(data)  
-                    displayResult(currentResult);    
+                    for (i=0;i<5;i++){
+                        displayResult(currentResult);    
+                        currentResult +=1;
+                    }
                     makeNavButtons();             
                 },
             ()=>{
