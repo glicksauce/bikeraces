@@ -52,11 +52,21 @@ const displayResult = (resultNumber) =>{
 }
 
 const makeNavButtons = () =>{
-    $leftButton = $('<button>').text("previous race").attr("id","scroll-left")
-    $rightButton = $('<button>').text("next race").attr("id","scroll-right")
+    $leftButton = $('<div>').attr("id","scroll-left").addClass("triangle-left")
+    $topLeftButton = $('<div>').addClass("top-triangle-left")
+    $rightButton = $('<div>').attr("id","scroll-right").addClass("triangle-right")
+    $topRightButton = $('<div>').addClass("top-triangle-right")
 
     //if not at the last result than to to the next result
     $rightButton.on("click",function () {
+        if (currentResult < resultsArray[0]["MatchingEvents"].length - 1){
+            let currentScrollPosition = $('.search-results').scrollLeft()
+            $('.search-results').scrollLeft(currentScrollPosition + scrollIncrement);
+
+        }
+    })
+
+    $topRightButton.on("click",function () {
         if (currentResult < resultsArray[0]["MatchingEvents"].length - 1){
             let currentScrollPosition = $('.search-results').scrollLeft()
             $('.search-results').scrollLeft(currentScrollPosition + scrollIncrement);
@@ -71,8 +81,15 @@ const makeNavButtons = () =>{
             $('.search-results').scrollLeft(currentScrollPosition - scrollIncrement);
         }   
     })
+    
+    $topLeftButton.on("click",function () {
+        if (currentResult > 0){
+            let currentScrollPosition = $('.search-results').scrollLeft()
+            $('.search-results').scrollLeft(currentScrollPosition - scrollIncrement);
+        }   
+    })
 
-    $('.background').append($leftButton).append($rightButton);
+    $('.background').append($leftButton).append($topLeftButton).append($rightButton).append($topRightButton);
 }
 
 /* not using at this time

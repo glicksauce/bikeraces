@@ -81,15 +81,12 @@ select{
     height: 180px;
     position: relative;
     top: 55px;
-    left: 310px;
-    overflow: auto;
+    left: 280px;
     display: flex;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory; 
 }
-
-
 
 .resultsText{
     width: 100%;
@@ -101,3 +98,116 @@ select{
     scroll-snap-align: start;
 }
 
+/*results scroll bar*/
+/* width */
+.search-results::-webkit-scrollbar {
+    width: 15px;
+    height: 8px;
+    cursor: pointer;
+  }
+  
+  
+  /* Track */
+  .search-results::-webkit-scrollbar-track {
+    background: #696969;
+    cursor: pointer;
+  }
+  
+  /* Handle */
+  .search-results::-webkit-scrollbar-thumb {
+    background: rgb(88, 156, 114);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  /* Handle on hover */
+  .search-results::-webkit-scrollbar-thumb:hover {
+    background: rgb(155, 96, 20);
+    cursor: pointer;
+  }
+
+  .triangle-left {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-right: 50px solid #555;
+    border-bottom: 25px solid transparent;
+    background: transparent;
+    border-left: transparent;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 76%;
+    left: 42%;
+
+  }
+
+  .top-triangle-left {
+	width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-right: 35px solid white;
+    border-bottom: 15px solid transparent;
+    background: transparent;
+    border-left: transparent;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 78%;
+    left: 42.9%;
+  }
+
+.triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-left: 50px solid #555;
+    border-bottom: 25px solid transparent;
+    background: transparent;
+    border-right: transparent;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 76%;
+    right: 42%;
+}
+
+.top-triangle-right {
+	width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-left: 35px solid white;
+    border-bottom: 15px solid transparent;
+    background: transparent;
+    border-right: transparent;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 78%;
+    right: 42.9%;
+}
+.triangle-left:hover {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-right: 50px solid rgb(155, 43, 43);
+    border-bottom: 25px solid transparent;
+    content: "spooky"
+}
+
+.top-triangle-left:hover {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-right: solid rgb(155, 43, 43);
+    border-bottom: 25px solid transparent;
+    content: "spooky"
+}
+
+.triangle-right:hover {
+	width: 0;
+	height: 0;
+	border-top: 25px solid transparent;
+	border-left: 50px solid rgb(155, 43, 43);
+	border-bottom: 25px solid transparent;
+}
