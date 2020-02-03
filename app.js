@@ -30,7 +30,13 @@ const displayResult = (resultNumber) =>{
         $eventTitle = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventName"]).addClass("resultsText")
 
         //event address (sometimes this is blank)
-        $eventAddress = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"]).addClass("resultsText")
+        if (resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"] != '') {
+            $eventAddress = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"]).addClass("resultsText")
+        }
+        console.log(resultNumber);
+        console.log(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"])
+        console.log($eventAddress.text());
+
         
         //event city + event state
         $eventCityState = $('<div>').text(
@@ -49,9 +55,15 @@ const displayResult = (resultNumber) =>{
 
         //making new div appending all results to this one div then appending it to search results
         $resultDiv = $('<div>').attr("id",currentResult).addClass("resultsText").css("border","none")
+        
         $resultDiv
             .append($eventTitle)
-            .append($eventAddress)
+           
+          if ($eventAddress !== ''){
+            $resultDiv.append($eventAddress)
+          }
+
+          $resultDiv
             .append($eventCityState)
             .append($eventDistance)
             .append($eventDate)
@@ -160,8 +172,8 @@ const mouseWheelListeners = () => {
 
                         //loops over all race results and adds to DOM
                         for (i=0;i<resultsArray[0]["MatchingEvents"].length;i++){
-                            console.log(resultsArray[0].MatchingEvents[i].EventTypes)
-                            console.log($('#race-type').val())
+                            //console.log(resultsArray[0].MatchingEvents[i].EventTypes)
+                            //console.log($('#race-type').val())
                             //console.log(resultsArray[0].MatchingEvents[i].EventTypes.includes($('#race-type').val()))
                             if (resultsArray[0].MatchingEvents[i].EventTypes.includes($('#race-type').val())) {
 
