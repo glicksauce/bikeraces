@@ -1,6 +1,6 @@
 let resultsArray = [];
 let currentResult = 0;
-let scrollIncrement = 100;
+let scrollIncrement = 100; //default
 let latitude = ''
 let longitutde = ''
 
@@ -9,33 +9,44 @@ $(()=>{
 console.log("up and running")
 
 
+const resetElements = () => {
+    resultsArray = [];
+    currentResult = 0;
+    scrollIncrement = 100; //default
+    latitude = ''
+    longitutde = ''
+
+    $('.resultsText').remove();
+    $('#scroll-left').remove()
+    $('#scroll-right').remove()
+}
 
 //displays a race result in the DOM
 const displayResult = (resultNumber) =>{
 
+        //event title
         $eventTitle = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventName"]).addClass("resultsText")
 
-        
+        //event address (sometimes this is blank)
         $eventAddress = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"]).addClass("resultsText")
         
-        
+        //event city + event state
         $eventCityState = $('<div>').text(
             resultsArray[0]["MatchingEvents"][resultNumber]["EventCity"] + " " + resultsArray[0]["MatchingEvents"][resultNumber]["EventState"]).addClass("resultsText")
-
+        
+        //distance from zip code
         $eventDistance = $('<div>').text(Math.floor(resultsArray[0]["MatchingEvents"][resultNumber]["Distance"]) + " miles away").addClass("resultsText")
         
         //converts Microsoft JSON Date format to a readable date
         let date = new Date(parseInt(resultsArray[0]["MatchingEvents"][resultNumber]["EventDate"].substr(6)));
+
+        //different date formats
         let date2 = date.toDateString()
         let date3 = date.toTimeString();
-
-        //console.log(date2)
-        //console.log(date3)
-
         $eventDate = $('<div>').text(date2).addClass("resultsText")
 
         //making new div appending all results to this one div then appending it to search results
-        $resultDiv = $('<div>').attr("id",currentResult).addClass("resultsText")
+        $resultDiv = $('<div>').attr("id",currentResult).addClass("resultsText").css("border","none")
         $resultDiv
             .append($eventTitle)
             .append($eventAddress)
@@ -48,24 +59,27 @@ const displayResult = (resultNumber) =>{
 }
 
 const makeNavButtons = () =>{
+
+    //adding left and right buttons
     $leftButton = $('<div>').attr("id","scroll-left").addClass("triangle-left")
-    $topLeftButton = $('<div>').addClass("top-triangle-left")
+    //$topLeftButton = $('<div>').addClass("top-triangle-left")
     $rightButton = $('<div>').attr("id","scroll-right").addClass("triangle-right")
-    $topRightButton = $('<div>').addClass("top-triangle-right")
+    //$topRightButton = $('<div>').addClass("top-triangle-right")
+
+    //setting  scroll increment
+    scrollIncrement = $('.search-results').get(0).scrollWidth / resultsArray[0]["MatchingEvents"].length
+    console.log(scrollIncrement)
 
     //if not at the last result than to to the next result
     $rightButton.on("click",function () {
+        console.log("clicked right", resultsArray[0]["MatchingEvents"].length - 1, scrollIncrement)
+
         if (currentResult < resultsArray[0]["MatchingEvents"].length - 1){
+            
+
             let currentScrollPosition = $('.search-results').scrollLeft()
             $('.search-results').scrollLeft(currentScrollPosition + scrollIncrement);
-
-        }
-    })
-
-    $topRightButton.on("click",function () {
-        if (currentResult < resultsArray[0]["MatchingEvents"].length - 1){
-            let currentScrollPosition = $('.search-results').scrollLeft()
-            $('.search-results').scrollLeft(currentScrollPosition + scrollIncrement);
+            currentResult += 1;
 
         }
     })
@@ -75,15 +89,10 @@ const makeNavButtons = () =>{
         if (currentResult > 0){
             let currentScrollPosition = $('.search-results').scrollLeft()
             $('.search-results').scrollLeft(currentScrollPosition - scrollIncrement);
+            currentResult -=1;
         }   
     })
     
-    $topLeftButton.on("click",function () {
-        if (currentResult > 0){
-            let currentScrollPosition = $('.search-results').scrollLeft()
-            $('.search-results').scrollLeft(currentScrollPosition - scrollIncrement);
-        }   
-    })
 
     $('.background')
     .append($leftButton)
@@ -116,6 +125,9 @@ const mouseWheelListeners = () => {
     $('form').on('submit',(event)=>{
         event.preventDefault();
 
+        //reset everything back
+        resetElements();
+
         let userZipCode = $('#zip-code').val();
         console.log(userZipCode)
         //const userInput = $('input[type="text"]').val()
@@ -137,6 +149,7 @@ const mouseWheelListeners = () => {
                 },
                 ()=>{
                     console.log('bad request')
+                    console.log("couldn't parse zip code")
                     console.log("Error: " + data.statusText)
                 }
             )
@@ -147,8 +160,10 @@ const mouseWheelListeners = () => {
             console.log(urlString)
             $.ajax({url:urlString}).then(
                     (data)=>{
-                        //console.log(JSON.stringify(new Date()))
+                        
                         console.log(data)
+
+                        //adds results to array
                         resultsArray.push(data)  
 
                         //loops over all race results and adds to DOM
@@ -156,6 +171,11 @@ const mouseWheelListeners = () => {
                             displayResult(currentResult);    
                             currentResult +=1;
                         }
+
+                        //sets currentResult back to 0 (start of results)
+                        currentResult = 0;
+
+                        //makes the navigation buttons
                         makeNavButtons();         
                     },
                 ()=>{
