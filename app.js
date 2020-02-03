@@ -53,6 +53,9 @@ const displayResult = (resultNumber) =>{
         let date3 = date.toTimeString();
         $eventDate = $('<div>').text(date2).addClass("resultsText")
 
+        //adding website
+        $eventWebsite = $('<div>').html("<a href='" + resultsArray[0]["MatchingEvents"][resultNumber]["EventUrl"] + "'>website</a>").addClass("resultsText")
+
         //making new div appending all results to this one div then appending it to search results
         $resultDiv = $('<div>').attr("id",currentResult).addClass("resultsText").css("border","none")
         
@@ -67,6 +70,7 @@ const displayResult = (resultNumber) =>{
             .append($eventCityState)
             .append($eventDistance)
             .append($eventDate)
+            .append($eventWebsite)
 
         $('.search-results').append($resultDiv)
 
