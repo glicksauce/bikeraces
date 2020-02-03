@@ -1,5 +1,6 @@
 let resultsArray = [];
 let currentResult = 0;
+let resultsTally = 0;
 let scrollIncrement = 100; //default
 let latitude = ''
 let longitutde = ''
@@ -12,6 +13,7 @@ console.log("up and running")
 const resetElements = () => {
     resultsArray = [];
     currentResult = 0;
+    resultsTally = 0;
     scrollIncrement = 100; //default
     latitude = ''
     longitutde = ''
@@ -67,14 +69,12 @@ const makeNavButtons = () =>{
     //$topRightButton = $('<div>').addClass("top-triangle-right")
 
     //setting  scroll increment
-    scrollIncrement = $('.search-results').get(0).scrollWidth / resultsArray[0]["MatchingEvents"].length
-    console.log(scrollIncrement)
+    scrollIncrement = $('.search-results').get(0).scrollWidth / resultsTally
 
     //if not at the last result than to to the next result
     $rightButton.on("click",function () {
-        console.log("clicked right", resultsArray[0]["MatchingEvents"].length - 1, scrollIncrement)
 
-        if (currentResult < resultsArray[0]["MatchingEvents"].length - 1){
+        if (currentResult < resultsTally){
             
 
             let currentScrollPosition = $('.search-results').scrollLeft()
@@ -129,21 +129,14 @@ const mouseWheelListeners = () => {
         resetElements();
 
         let userZipCode = $('#zip-code').val();
-        console.log(userZipCode)
-        //const userInput = $('input[type="text"]').val()
-        //numberComplaints = userInput
-
-        //console.log(userInput)
 
         const getLatLong = () => {
-            console.log("getting geopoints")
 
             $.ajax({url:'https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=' + userZipCode + '&facet=state&facet=timezone&facet=dst'}).then(
                 (data)=>{
                     console.log(data)
                     latitude = data.records[0].fields.geopoint[0]
                     longitude = data.records[0].fields.geopoint[1]
-                    console.log(latitude, longitude)
                     getBikeRaceResults()
                     
                 },
@@ -157,7 +150,6 @@ const mouseWheelListeners = () => {
 
         const getBikeRaceResults = () => {
             let urlString = 'https://cors-anywhere.herokuapp.com/http://www.BikeReg.com/api/search?loc='+ latitude + '|' + longitude + '&distance=60'
-            console.log(urlString)
             $.ajax({url:urlString}).then(
                     (data)=>{
                         
@@ -168,8 +160,16 @@ const mouseWheelListeners = () => {
 
                         //loops over all race results and adds to DOM
                         for (i=0;i<resultsArray[0]["MatchingEvents"].length;i++){
-                            displayResult(currentResult);    
+                            console.log(resultsArray[0].MatchingEvents[i].EventTypes)
+                            console.log($('#race-type').val())
+                            //console.log(resultsArray[0].MatchingEvents[i].EventTypes.includes($('#race-type').val()))
+                            if (resultsArray[0].MatchingEvents[i].EventTypes.includes($('#race-type').val())) {
+
+                                displayResult(currentResult);    
+                                resultsTally +=1;
+                            }
                             currentResult +=1;
+                            
                         }
 
                         //sets currentResult back to 0 (start of results)

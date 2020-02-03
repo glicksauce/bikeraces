@@ -13,6 +13,7 @@
 <body>
     <div class="container">
         <h1>Bike Race Finder</h1>
+        <form>
         <div class="inputBox">
         <div class="descriptor">Enter your zip code</div>
             
@@ -20,14 +21,15 @@
             
         </div>
             <div class="descriptor">Choose your race type</div>
-                <select>
-                    <option value="road">Road Race</option>
-                    <option value="road">Cyclocross Race</option>
-                    <option value="road">Mountain Bike</option>
-                    <option value="road">Gran Fondo</option>
+                <select id="race-type">
+                    <option value="Road Race">Road Race</option>
+                    <option value="Cyclocross">Cyclocross Race</option>
+                    <option value="Off Road">Off Road</option>
+                    <option value="Gran Fondo">Gran Fondo</option>
+                    <option value="Gravel Grinder">Gravel Grinder</option>
                 </select>
             <div class="go-button">
-                <form>
+                
                 <button id="go" type="submit">Go!</button>
                 </form>
             </div> 
