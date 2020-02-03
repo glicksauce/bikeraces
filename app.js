@@ -1,6 +1,8 @@
 let resultsArray = [];
 let currentResult = 0;
 let scrollIncrement = 100;
+let latitude = ''
+let longitutde = ''
 
 
 $(()=>{
@@ -10,9 +12,6 @@ console.log("up and running")
 
 //displays a race result in the DOM
 const displayResult = (resultNumber) =>{
-
-        //clears out the results
-        //$('.resultsText').remove()
 
         $eventTitle = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventName"]).addClass("resultsText")
 
@@ -30,8 +29,8 @@ const displayResult = (resultNumber) =>{
         let date2 = date.toDateString()
         let date3 = date.toTimeString();
 
-        console.log(date2)
-        console.log(date3)
+        //console.log(date2)
+        //console.log(date3)
 
         $eventDate = $('<div>').text(date2).addClass("resultsText")
 
@@ -45,9 +44,6 @@ const displayResult = (resultNumber) =>{
             .append($eventDate)
 
         $('.search-results').append($resultDiv)
-
-        //testing slider section
-        //$('.slider').append($resultDiv.attr("id",currentResult))
 
 }
 
@@ -89,7 +85,11 @@ const makeNavButtons = () =>{
         }   
     })
 
-    $('.background').append($leftButton).append($topLeftButton).append($rightButton).append($topRightButton);
+    $('.background')
+    .append($leftButton)
+    //.append($topLeftButton)
+    .append($rightButton)
+    //.append($topRightButton);
 }
 
 /* not using at this time
@@ -116,30 +116,56 @@ const mouseWheelListeners = () => {
     $('form').on('submit',(event)=>{
         event.preventDefault();
 
-        let $userZipCode = $('#zip-code').val();
-        console.log($userZipCode)
+        let userZipCode = $('#zip-code').val();
+        console.log(userZipCode)
         //const userInput = $('input[type="text"]').val()
         //numberComplaints = userInput
 
         //console.log(userInput)
 
-    const promise = $.ajax({
-            url:'https://cors-anywhere.herokuapp.com/http://www.BikeReg.com/api/search?loc=42.7935917|-71.0378909&distance=60'}).then(
+        const getLatLong = () => {
+            console.log("getting geopoints")
+
+            $.ajax({url:'https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=' + userZipCode + '&facet=state&facet=timezone&facet=dst'}).then(
                 (data)=>{
-                    //console.log(JSON.stringify(new Date()))
                     console.log(data)
-                    resultsArray.push(data)  
-                    for (i=0;i<5;i++){
-                        displayResult(currentResult);    
-                        currentResult +=1;
-                    }
-                    makeNavButtons();         
+                    latitude = data.records[0].fields.geopoint[0]
+                    longitude = data.records[0].fields.geopoint[1]
+                    console.log(latitude, longitude)
+                    getBikeRaceResults()
+                    
                 },
-            ()=>{
-                console.log('bad request')
-                console.log("Error: " + data.statusText)
-            }
-        )
+                ()=>{
+                    console.log('bad request')
+                    console.log("Error: " + data.statusText)
+                }
+            )
+        }
+
+        const getBikeRaceResults = () => {
+            let urlString = 'https://cors-anywhere.herokuapp.com/http://www.BikeReg.com/api/search?loc='+ latitude + '|' + longitude + '&distance=60'
+            console.log(urlString)
+            $.ajax({url:urlString}).then(
+                    (data)=>{
+                        //console.log(JSON.stringify(new Date()))
+                        console.log(data)
+                        resultsArray.push(data)  
+
+                        //loops over all race results and adds to DOM
+                        for (i=0;i<resultsArray[0]["MatchingEvents"].length;i++){
+                            displayResult(currentResult);    
+                            currentResult +=1;
+                        }
+                        makeNavButtons();         
+                    },
+                ()=>{
+                    console.log('bad request')
+                    console.log("Error: " + data.statusText)
+                }
+            )   
+        }
+
+        getLatLong()
     })
 
 
