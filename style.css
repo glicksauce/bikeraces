@@ -164,11 +164,11 @@ button{
     border-bottom: 25px solid transparent;
     background: transparent;
     border-left: transparent;
-    position: absolute;
+    position: relative;
     padding: 0;
     margin: 0;
-    top: 750px;
-    left: 36%;
+    bottom: -27vw;
+    left: -13vw;
 
   }
 
@@ -195,11 +195,11 @@ button{
     border-bottom: 25px solid transparent;
     background: transparent;
     border-right: transparent;
-    position: absolute;
+    position: relative;
     padding: 0;
     margin: 0;
-    top: 750px;
-    right: 36%;
+    bottom: -31vw;
+    right: -12vw;
 }
 
 .top-triangle-right {
