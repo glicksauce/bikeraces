@@ -5,7 +5,7 @@
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 0 30%;
+    margin: 0 10%;
 }
 
 h1{
@@ -54,11 +54,12 @@ select{
     height: 75px;
     border-radius: 50%;
     margin: 10px 0;
-    background: radial-gradient(#3DDD9B , #688E7F); 
+    background: radial-gradient(#3DDD9B , rgb(142, 104, 131)); 
     color: #111245;
     font-size: 30px;
     border: 2px solid #D9C0B5;
     font-family: 'Poppins', sans-serif;
+    text-align: center;
 }
 
 #go:hover{
