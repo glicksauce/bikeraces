@@ -9,7 +9,6 @@ let longitutde = ''
 $(()=>{
 console.log("up and running")
 
-
 const resetElements = () => {
     resultsArray = [];
     currentResult = 0;
@@ -33,9 +32,9 @@ const displayResult = (resultNumber) =>{
         if (resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"] != '') {
             $eventAddress = $('<div>').text(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"]).addClass("resultsText")
         }
-        console.log(resultNumber);
-        console.log(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"])
-        console.log($eventAddress.text());
+        //console.log(resultNumber);
+        //console.log(resultsArray[0]["MatchingEvents"][resultNumber]["EventAddress"])
+        //console.log($eventAddress.text());
 
         
         //event city + event state
@@ -117,6 +116,17 @@ const makeNavButtons = () =>{
     //.append($topRightButton);
 }
 
+const zipCodeValidation = (arg) =>{
+    const zipCodeRegex = /^\d{5}$/ 
+
+    if (!zipCodeRegex.test(arg)) {
+        $('.zip-error').fadeIn();
+    } else {
+
+    }
+
+    return !zipCodeRegex.test(arg)
+}
 /* not using at this time
 //mouse wheel listeners
 const mouseWheelListeners = () => {
@@ -147,7 +157,7 @@ const mouseWheelListeners = () => {
         let userZipCode = $('#zip-code').val();
 
         const getLatLong = () => {
-
+ 
             $.ajax({url:'https://public.opendatasoft.com/api/records/1.0/search/?dataset=us-zip-code-latitude-and-longitude&q=' + userZipCode + '&facet=state&facet=timezone&facet=dst'}).then(
                 (data)=>{
                     console.log(data)
@@ -201,7 +211,23 @@ const mouseWheelListeners = () => {
             )   
         }
 
-        getLatLong()
+        const promiseZipCode = new Promise(function(resolve,reject) {
+            const zipCodeRegex = /^\d{5}$/ 
+
+            if (!zipCodeRegex.test(userZipCode)) {
+                $('.zip-error').fadeIn();
+                reject(new Error("invalid zip!"))
+            } else {
+                $('.zip-error').fadeOut();
+                console.log("zip valid")
+                resolve("zip valid!")
+                
+            }
+        
+        })
+
+        promiseZipCode.then(getLatLong(),
+            console.log("nope"))
     })
 
 

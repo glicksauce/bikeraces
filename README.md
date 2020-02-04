@@ -60,7 +60,7 @@ Complex user interface:
  - format result to appear in DOM
  - create carousel
  - revamp laouyout. format for multiple screen sizes
- - add data validation for zip code entry
+ add data validation for zip code entry
  improve CSS, make it look more professional
  start stretch goals
 

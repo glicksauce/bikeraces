@@ -27,6 +27,14 @@ input{
    font-family: 'Poppins', sans-serif;
 }
 
+.zip-error{
+    display: none;
+    color: red;
+    font-family: 'Poppins', sans-serif;
+    margin-top: -16px;
+    font-size: 9px;
+}
+
 input:focus {
     background-color: #F1E2DA;
 
@@ -270,6 +278,7 @@ button{
 
 /*-formatting for mobile in landscape mode -*/
 @media only screen 
+    and (max-device-width: 667px) 
     and (orientation: landscape) {
 
         .background{
