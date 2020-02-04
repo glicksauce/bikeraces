@@ -94,13 +94,12 @@ button{
     /*border-top: 100px red solid;*/
     margin-top: 105px;
     width: 15%;
-    height: 200px;
+    height: 250px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory; 
     display: flex;
     flex-direction: row;
-    
 }
 
 .resultsText{
@@ -111,6 +110,9 @@ button{
     border-image-slice: 1;
     flex-shrink: 0;
     scroll-snap-align: start;
+    text-align: center;
+    padding: .05em .4em .05em 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 /*results scroll bar*/
@@ -244,9 +246,12 @@ button{
     .search-results{
         margin-top: 30px;
         width: 33%;
-        height: 200px;    
+        height: 175px;    
     }
 
+    .resultsText{
+        font-size: 9px;
+    }
     .triangle-left {
         top: 450px;
         left: 18%;

@@ -51,15 +51,15 @@ Complex user interface:
 -  create wireframe
 - create html,css, and javascript boiler plate
 - verify site is accessable from github pages
- basic layout
+ - basic layout
    - background
    - input, buttons, divs
  - basic css
- implement api. needs to take in zip and type of race and return results
+ - implement api. needs to take in zip and type of race and return results
     - (discovered api needs location in terms of latitude and lognitude, need to find a way to convert zip code into long, lat units will come back to this)
  - format result to appear in DOM
  - create carousel
- revamp laouyout. format for multiple screen sizes
+ - revamp laouyout. format for multiple screen sizes
  - add data validation for zip code entry
  improve CSS, make it look more professional
  start stretch goals
