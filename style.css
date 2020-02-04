@@ -227,7 +227,7 @@ button{
 	border-bottom: 25px solid transparent;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
 
     .background{
         width: 100%;
@@ -239,24 +239,23 @@ button{
         display: flex;
         justify-content: center;
         align-items: flex-start;
-  }
+    }
 
-  .search-results{
-        width: 35%;
+    .search-results{
+        margin-top: 30px;
+        width: 33%;
         height: 200px;    
     }
 
     .triangle-left {
         top: 450px;
         left: 18%;
-      }
+    }
 
     .triangle-right {
         top: 450px;
         right: 18%;
     }
       
-
-
 
 }
