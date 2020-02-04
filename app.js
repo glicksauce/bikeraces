@@ -211,6 +211,8 @@ const mouseWheelListeners = () => {
             )   
         }
 
+        /*
+
         const promiseZipCode = new Promise(function(resolve,reject) {
             const zipCodeRegex = /^\d{5}$/ 
 
@@ -225,9 +227,23 @@ const mouseWheelListeners = () => {
             }
         
         })
+        */
 
-        promiseZipCode.then(getLatLong(),
-            console.log("nope"))
+        const checkZipCode = (zipCode) =>{
+            const zipCodeRegex = /^\d{5}$/ 
+
+            if (!zipCodeRegex.test(zipCode)) {
+                $('.zip-error').fadeIn();
+            } else {
+                $('.zip-error').fadeOut();
+                console.log("zip valid")
+                getLatLong()
+            }
+        }
+
+        checkZipCode(userZipCode)
+        //promiseZipCode.then(getLatLong(),
+        //    console.log("nope"))
     })
 
 
