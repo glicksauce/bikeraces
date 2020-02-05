@@ -109,7 +109,7 @@ const makeNavButtons = () =>{
     })
     
 
-    $('.container')
+    $('.nav-container')
     .append($leftButton)
     //.append($topLeftButton)
     .append($rightButton)

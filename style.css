@@ -131,8 +131,8 @@ button{
 /*results scroll bar*/
 /* width */
 .search-results::-webkit-scrollbar {
-    width: 15px;
-    height: 8px;
+    width: .5vw;
+    height: 1.5vw;
     cursor: pointer;
   }
   
@@ -157,6 +157,7 @@ button{
   }
 
   .triangle-left {
+    float: left;
 	width: 0;
 	height: 0;
 	border-top: 25px solid transparent;
@@ -168,7 +169,7 @@ button{
     padding: 0;
     margin: 0;
     bottom: -27vw;
-    left: -13vw;
+    left: -12vw;
 
   }
 
@@ -188,6 +189,7 @@ button{
   }
 
 .triangle-right {
+    float: left;
 	width: 0;
 	height: 0;
 	border-top: 25px solid transparent;
@@ -198,8 +200,8 @@ button{
     position: relative;
     padding: 0;
     margin: 0;
-    bottom: -31vw;
-    right: -12vw;
+    bottom: -27vw;
+    left: 13vw;
 }
 
 .top-triangle-right {
@@ -260,22 +262,23 @@ button{
     }
 
     .search-results{
-        margin-top: 30px;
-        width: 33%;
-        height: 175px;    
+        margin-top: 14%;
+        width: 31%;
+        height: 34vw;
+        padding-bottom: 5%;   
     }
 
     .resultsText{
-        font-size: 9px;
+        font-size: 2vw;
     }
     .triangle-left {
-        top: 450px;
-        left: 18%;
+       bottom: -55vw;
+       left: -25vw;
     }
 
     .triangle-right {
-        top: 450px;
-        right: 18%;
+        bottom: -55vw;
+        left: 25vw;
     }
       
 
@@ -299,22 +302,23 @@ button{
         }
     
         .search-results{
-            margin-top: 75px;
-            width: 33%;
-            height: 175px;    
+            margin-top: 14%;
+            width: 31%;
+            height: 34vw;
+            padding-bottom: 5%;    
         }
     
         .resultsText{
-            font-size: 9px;
+            font-size: 2vw;
         }
         .triangle-left {
-            top: 450px;
-            left: 18%;
+            bottom: -50vw;
+            left: -25vw
         }
     
         .triangle-right {
-            top: 450px;
-            right: 18%;
+            bottom: -50vw;
+            left: 25vw
         }
 
 
