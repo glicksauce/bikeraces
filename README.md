@@ -36,7 +36,7 @@ Complex user interface:
 
 ## Under the hood:
     The search will be powered by an API from the website bike-reg.com: https://www.bikereg.com/api/EventSearchDoc.aspx. DOM manipulation will be done by jquery
-
+    Added a second API: https://public.opendatasoft.com/api which converts a zip code until latitude and longitude coordinates to work with the first API
 
 ## MVP Deliverables
 - User can enter zip code and type of race and get back results
@@ -66,6 +66,6 @@ Complex user interface:
  - revamp laouyout. format for multiple screen sizes
  - add data validation for zip code entry
 - fix mobile layout, scroll on resize
- improve CSS, make it look more professional
+ - improve CSS, make it look more professional
  start stretch goals
 

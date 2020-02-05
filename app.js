@@ -128,6 +128,16 @@ const zipCodeValidation = (arg) =>{
     return !zipCodeRegex.test(arg)
 }
 
+
+$('#radiusSearch').on("mouseenter",function(){
+    this.iid = setInterval(function(){
+        let radiusSearch = $("#radiusSearch").val();
+        $('#radiusText').text(radiusSearch)
+    },25);
+}).on('mouseleave',function(){
+    this.iid && clearInterval(this.iid)
+})
+
 //listener for window resize to correct horizontal scroll issues
 window.addEventListener('resize',function(){
     //this.console.log("resizing...")
@@ -165,6 +175,7 @@ const mouseWheelListeners = () => {
         resetElements();
 
         let userZipCode = $('#zip-code').val();
+        let radiusSearch = $("#radiusSearch").val();
 
         const getLatLong = () => {
  
@@ -185,7 +196,7 @@ const mouseWheelListeners = () => {
         }
 
         const getBikeRaceResults = () => {
-            let urlString = 'https://cors-anywhere.herokuapp.com/http://www.BikeReg.com/api/search?loc='+ latitude + '|' + longitude + '&distance=60'
+            let urlString = 'https://cors-anywhere.herokuapp.com/http://www.BikeReg.com/api/search?loc='+ latitude + '|' + longitude + '&distance='  + radiusSearch
             $.ajax({url:urlString}).then(
                     (data)=>{
                         
