@@ -127,6 +127,16 @@ const zipCodeValidation = (arg) =>{
 
     return !zipCodeRegex.test(arg)
 }
+
+//listener for window resize to correct horizontal scroll issues
+window.addEventListener('resize',function(){
+    //this.console.log("resizing...")
+
+    //sets scrollbar all the way left
+    currentResult = 0;
+    $('.search-results').scrollLeft(0)
+
+})
 /* not using at this time
 //mouse wheel listeners
 const mouseWheelListeners = () => {

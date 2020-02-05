@@ -5,11 +5,12 @@ https://docs.google.com/spreadsheets/d/1fS22w516hrhnCq4oJuuUdUQXpVWzxLps8brO4I0u
 
 ## The concept:
 A bike race finder that uses an API to find bike races in your area
+wireframe: https://github.com/glicksauce/glicksauce.github.io/blob/master/wireframe.jpg?raw=true
 
 ## The layout:
 Standard screen
 Background 
-- cyclist looking down at his handlebards. At the center is the garmin computer which will display results from the search
+- cyclist looking down at his handlebars. At the center is the garmin computer which will display results from the search
 
 ## Elements: 
 - Title 
@@ -22,7 +23,10 @@ Buttons:
 - Go! (kicks off the search)
 
 Divs: 
-- Search results, displayed in the 'bike computer' section of the background
+- Search results, displayed in the 'bike computer' section of the background. Used flexbox mostly with everything centered in a column layout.
+
+Background:
+- A bike computer attached to handlebars. I lined up the results div with the background image (would not recommend for future projects)
     
 Complex user interface:
 - search results will be displayed 'carousel style' on the bike computer background (ordered by race date) and can be scrolled through left and right
@@ -39,11 +43,11 @@ Complex user interface:
 - User can scroll left and right through the results
 
 ## Stretch goals:
-- add another input where user can limit distance to search (in miles)
-- implment 'find my current location' button to automatically populate users's zip code
-- user can save races which will get stored in localstorage
-- Create a calendar of saved races.
-- change search results to a list and instead make the carousel of the users saved calendar events
+ add another input where user can limit distance to search (in miles)
+ implment 'find my current location' button to automatically populate users's zip code
+ user can save races which will get stored in localstorage
+ Create a calendar of saved races.
+ change search results to a list and instead make the carousel of the users saved calendar events
 
 ## Progress:
 ( '-' in front of item indicates completed)
