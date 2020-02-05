@@ -47,8 +47,15 @@ form{
     flex-wrap: wrap;
     flex-direction: column;
 }
-#zip-code{
-    
+
+.radius-text-holder{
+    display: block;
+    height: 20px;
+}
+
+#radiusText{
+    position: relative;
+    font-size: 9px;
 }
 
 select{

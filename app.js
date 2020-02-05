@@ -132,10 +132,12 @@ const zipCodeValidation = (arg) =>{
 $('#radiusSearch').on("mouseenter",function(){
     this.iid = setInterval(function(){
         let radiusSearch = $("#radiusSearch").val();
-        $('#radiusText').text(radiusSearch)
+        $("#radiusText").show()
+        $('#radiusText').text(radiusSearch + " mi")
     },25);
 }).on('mouseleave',function(){
     this.iid && clearInterval(this.iid)
+    $("#radiusText").fadeOut(500)
 })
 
 //listener for window resize to correct horizontal scroll issues
