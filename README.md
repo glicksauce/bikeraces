@@ -52,8 +52,9 @@ the alignment works pretty well on all page sizes. I created two media queries f
 Can also "swipe" through results
 
 ## Under the hood:
-    The search is powered by an API from the website bike-reg.com: https://www.bikereg.com/api/EventSearchDoc.aspx. DOM manipulation will be done by jquery
-    Added a second API: https://public.opendatasoft.com/api which converts a zip code until latitude and longitude coordinates to work with the first API
+The search is powered by an API from the website bike-reg.com: https://www.bikereg.com/api/EventSearchDoc.aspx. DOM manipulation will be done by jquery
+
+Added a second API: https://public.opendatasoft.com/api which converts a zip code until latitude and longitude coordinates to work with the first API
 
 ## Event Listeners 
 Window.resize - resets results to postion 0 to fix scroll bar errors
@@ -61,10 +62,14 @@ Window.resize - resets results to postion 0 to fix scroll bar errors
 Form.subit - runs first api to get lat,long, then passes to bike search api
 
 ## Stretch goals:
- - add another input where user can limit distance to search (in miles)
+ (completed) add another input where user can limit distance to search (in miles)
+ 
  implment 'find my current location' button to automatically populate users's zip code
+ 
  user can save races which will get stored in localstorage
+ 
  Create a calendar of saved races.
+ 
  change search results to a list and instead make the carousel of the users saved calendar events
 
 ## Progress:
