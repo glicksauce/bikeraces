@@ -129,6 +129,7 @@ const zipCodeValidation = (arg) =>{
 }
 
 //shows distance to search when hovering over slider
+/*
 $('#radiusSearch').on("mouseenter",function(){
     this.iid = setInterval(function(){
         let radiusSearch = $("#radiusSearch").val();
@@ -139,14 +140,15 @@ $('#radiusSearch').on("mouseenter",function(){
     this.iid && clearInterval(this.iid)
     $("#radiusText").fadeOut(500)
 })
+*/
 
-$('#radiusSearch').on("mousedown", function(){
+$('#radiusSearch').on("click", function(){
     this.iid = setInterval(function(){
         let radiusSearch = $("#radiusSearch").val();
         $("#radiusText").show()
         $('#radiusText').text(radiusSearch + " mi")
     },25);
-}).on('mouseleave',function(){
+}).on('mouseup',function(){
     this.iid && clearInterval(this.iid)
     $("#radiusText").fadeOut(500)
 })
